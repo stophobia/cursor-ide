@@ -1,0 +1,127 @@
+---
+description: [영어] 모두의커서 지시사항
+globs: 
+---
+# Development Guidelines 
+
+---
+
+## 1. Core Principles & Style
+
+- **Concise and Technical Responses**  
+  Provide essential Python code samples, ensuring accurate syntax and concepts.
+
+- **Preference for Class-Based Programming**  
+  - Write code using classes.
+  - Minimize code duplication by modularizing and reusing components.
+
+- **Clear Naming Conventions**  
+  - Use descriptive variable and function names (e.g., is_active, has_permission).
+  - Files and folders should use snake_case format.  
+    Example: `routers/user_routes.py`, `utils/data_processing.py`
+
+- **Adhere to the RORO Pattern**  
+  Every function should receive input as a Pydantic v2 model and return an object accordingly.
+
+---
+
+## 2. Python / FastAPI Development Guide
+
+### 2.1 Functions & Asynchronous Operations
+- Use `def` for regular functions and `async def` for asynchronous operations.
+- Include type hints in function signatures and use Pydantic v2 models for validating input data and constructing response schemas.
+- Define API routes declaratively with explicit return type annotations.
+
+### 2.2 Error Handling & Validation
+- Process all errors and edge cases at the beginning of functions using guard clauses.  
+  For example, use early returns for input validation failures.
+- Use try/except blocks to catch unexpected errors, raise appropriate HTTPExceptions with user-friendly messages.
+- Implement consistent error handling using custom error types or error factories.
+- Log internal debugging details and stack traces separately.
+
+### 2.3 Module Organization & File Structure
+- **Routers**:  
+  Organize API endpoints by separating them into router modules based on functionality.
+- **Utilities**:  
+  Extract repetitive or commonly used logic into utility functions.
+- **Types/Models**:  
+  Use Pydantic v2 models for data validation and schema management.
+- **Dependency Injection**:  
+  Leverage FastAPI’s dependency injection for managing database connections, caching (Redis), and environment variables.
+
+---
+
+## 3. Performance Optimization & Asynchronous Handling
+- **Optimize Async I/O**:  
+  Handle database calls (using asyncpg, psycopg2, SQLAlchemy 2) and external API requests asynchronously to minimize blocking.
+- **Caching Strategies**:  
+  Utilize caching solutions like Redis and the fastapi-cache2 library to cache frequently accessed data.
+- **Optimize Data Serialization**:  
+  Use Pydantic v2 for efficient serialization/deserialization and apply lazy loading techniques.
+- **Middleware Utilization**:  
+  Implement middleware for logging, error monitoring, and performance optimization; manage startup/shutdown events with FastAPI’s Lifespan Context Manager.
+
+---
+
+## 4. Microservices & Serverless Architecture
+- **Stateless Service Design**:  
+  Ensure services do not retain internal state, relying on external storages and caches.
+- **API Gateway & Reverse Proxy**:  
+  Use AWS API Gateway, NGINX, etc., for traffic regulation, request transformation, and enhanced security.
+- **Inter-Service Communication**:  
+  Implement asynchronous event-driven communication using message brokers like RabbitMQ or Kafka.
+
+---
+
+## 5. Advanced Middleware & Security
+- **Security Enhancements**:  
+  - Apply OAuth2, CORS, CSP, and other security headers to strengthen API security.
+  - Incorporate detailed strategies for managing JWT tokens, CSRF protection, enhanced input validation, and protection against XSS/SQL Injection.
+  - Include concrete implementation guidelines for API Rate Limiting and DDoS protection middleware.
+- **Logging & Exception Handling**:  
+  - Define custom exception classes along with specific guidelines for log levels (debug, info, warning, error, critical) based on error conditions.
+  - Ensure logging messages include pertinent details such as request ID, user information, and call stacks for effective debugging and monitoring.
+
+---
+
+## 6. Enhanced Environment Variable & Configuration Management
+- **Utilize pydantic-settings**:  
+  Use pydantic-settings to manage environment variables with specific examples and a documented configuration file structure.
+  - Example: Use a `.env` file and a settings model class to separate configurations for local, staging, and production environments.
+- **Configuration Separation Strategy**:  
+  Maintain separate configuration files (e.g., settings_local.py, settings_staging.py, settings_prod.py) for different environments.
+
+---
+
+## 7. Documentation & Commenting Standards
+- **Docstring Guidelines**:  
+  Write detailed docstrings for each class, function, and module, clearly documenting business logic and main algorithms.
+- **Commenting Practices**:  
+  Ensure comments do more than just explain; they should document core logic and the underlying intent behind algorithms.
+
+---
+
+## 8. Static Analysis & Linting Tools
+- **Use Additional Tools**:  
+  In addition to black, isort, mypy, and ruff, incorporate tools such as flake8 and bandit to enhance security vulnerability scanning and code quality verification.
+- **CI/CD Pipeline Integration**:  
+  Integrate static analysis tools within the CI/CD pipeline to automate code review and quality checks.
+
+---
+
+## 9. Detailed Class Structure Separation
+- **Class Segregation Guidelines**:  
+  Organize each domain into distinct service classes, controller (or router) classes, and utility classes.
+- **Include Patterns & Sample Code**:  
+  Document common design patterns such as the service layer and repository pattern with example code to ensure consistency among team members.
+
+---
+
+## 10. Integration with PRD Documents & Internal Guidelines
+- **Role of PRD Documents**:  
+  - The overarching project PRD should follow the '@prd.mdc' directive.
+  - Domain-specific PRDs (e.g., for SaJu, accounts, users, seollal calendars) must include detailed requirements, API specs, data models, error handling, and business logic.
+- **Documentation Synchronization**:  
+  Synchronize PRD documents, Alembic migration scripts, and domain-specific documentation with code changes, particularly in the database schema or API specifications.
+- **Constant and Utility Function Management**:  
+  Ensure that modifications to constants or shared utilities are properly updated across all related documentation.
