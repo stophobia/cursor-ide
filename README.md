@@ -75,23 +75,23 @@ Cursor 내의 개발 환경은 여러 커스텀 rules 문서를 통해 관리됩
 각 PRD 문서는 다음과 같이 구성되어 있습니다.
 
 - **전체 프로젝트 요구사항**  
-  - [PRD_project.md](docs/PRD/PRD_project.md)  
+  - [PRD_project.md](PRD/PRD_project.md)  
     프로젝트의 개요, 주요 기능, 기술 스택 및 아키텍처 개요가 포함되어 있으며, 전반적인 제품 요구사항을 상세하게 설명합니다.
 
 - **프로젝트 전체 폴더 구조 및 역할**  
-  - [PRD_project_folders.md](docs/PRD/PRD_project_folders.md)  
+  - [PRD_project_folders.md](PRD/PRD_project_folders.md)  
     도메인 중심의 폴더 구조, API 라우팅, 비즈니스 로직 및 공통 기능 모듈의 역할과 위치를 명확히 하여, 유지보수성과 확장성을 높이는 설계를 제안합니다.
 
 - **Git 브랜치 및 커밋 메시지 전략**  
-  - [PRD_git_branch.md](docs/PRD/PRD_git_branch.md)  
+  - [PRD_git_branch.md](PRD/PRD_git_branch.md)  
     Git 브랜치 전략과 커밋 메시지 작성 규칙을 정의하여, 안정적이고 일관된 형상 관리를 지원합니다.
 
 - **도메인별 제품 요구사항 문서**  
-  - [PRD_order.md](docs/PRD/domain/PRD_order.md)  
+  - [PRD_order.md](PRD/domain/PRD_order.md)  
     주문(Order) 도메인의 요구사항과 비즈니스 로직, API 엔드포인트 등을 상세하게 기술합니다.
-  - [PRD_product.md](docs/PRD/domain/PRD_product.md)  
+  - [PRD_product.md](PRD/domain/PRD_product.md)  
     상품(Product) 도메인에 대한 등록, 조회, 수정, 삭제 및 관련 비즈니스 로직이 포함됩니다.
-  - [PRD_user.md](docs/PRD/domain/PRD_user.md)  
+  - [PRD_user.md](PRD/domain/PRD_user.md)  
     사용자(User) 도메인의 회원가입, 로그인, 프로필 관리 등의 기능과 보안 요구사항을 다룹니다.
 
 > 모든 팀원은 최신 PRD 문서를 참고하여, 코드 변경 시 해당 문서와 동기화를 진행함으로써 일관된 개발 기준과 형상 관리를 유지해야 합니다.
