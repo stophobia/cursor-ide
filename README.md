@@ -7,7 +7,7 @@
 ## 주요 다룰 주제
 - Cursor IDE 사용 가이드 및 팁 공유
 - 개발 환경 설정 문서
-- PRD(Product Requirement Document) 관리
+- PRD(Product Requirements Document) 관리
 - 코딩 규칙 및 스타일 가이드 제공
 
 ---
@@ -40,25 +40,26 @@ Cursor에서는 상황에 따라 다른 컨텍스트 창 토큰 제한을 사용
 자세한 사용법은 [Cursor 사용법](https://docs.cursor.com/)도 확인하시기 바랍니다.
 
 
-
 ### 2. Cursor Rules & 개발 지시사항 설정
 Cursor 내의 개발 환경은 여러 커스텀 rules 문서를 통해 관리됩니다.  
 아래와 같이 각 지시사항 문서를 참조하여 개발 가이드라인을 숙지하시기 바랍니다.
 
 - **FastAPI 개발 지시사항 (한글)**  
-  - 문서 위치: `.cursor/rules/MOAI_FastAPI_kr.mdc`  
+  - 문서 위치: [.cursor/rules/MOAI_FastAPI_kr.mdc](.cursor/rules/MOAI_FastAPI_kr.mdc)
   - 주요 내용:  
     - 클래스 기반 프로그래밍, RORO 패턴 사용  
     - 비동기 작업 시 `async def` 사용 및 에러 처리(guard clause, try/except 사용)  
     - 명확한 변수명 및 함수명을 사용
     - 환경 변수, 캐싱, 로깅, DB 연결 등 인프라 관련 설정 관리
+    - 프로젝트 별 PRD 문서 참조 가능
+    - 자신의 프로젝트에 맞게 추가/수정 사용 권장
 
 - **FastAPI 개발 지시사항 (영어)**  
-  - 문서 위치: `.cursor/rules/MOAI_FastAPI_en.mdc`  
-  - 핵심 가이드라인은 위의 한글 버전과 동일하며, 글로벌 개발팀과의 협업을 위해 제공됨
+  - 문서 위치: [.cursor/rules/MOAI_FastAPI_en.mdc](.cursor/rules/MOAI_FastAPI_en.mdc)  
+  - 핵심 가이드라인은 위의 한글 버전과 동일하며, Context Token 절약을 위한 영어 버전 추가 제공
 
 - **PRD 문서 작성 지시사항**  
-  - 문서 위치: `.cursor/rules/MOAI_PRD.mdc`  
+  - 문서 위치: [.cursor/rules/MOAI_PRD.mdc](.cursor/rules/MOAI_PRD.mdc)  
   - 주요 내용:  
     - 프로젝트 전체 개요, 아키텍처, 데이터 모델, API 엔드포인트, 변경 이력 등 문서화  
     - 각 도메인 별 PRD 파일(@PRD_project.md, @PRD_saju.md 등) 관리  
@@ -66,34 +67,35 @@ Cursor 내의 개발 환경은 여러 커스텀 rules 문서를 통해 관리됩
 
 > 참고: 각 개발 지시사항 문서에 '@PRD_project.md, @PRD_saju.md' 형태로 심볼릭 링크가 가능하며, 이를 통해 프로젝트 별 PRD 문서를 참조할 수 있습니다.
 
-## FastAPI 및 PRD 관련 개발 지시사항
 
-### FastAPI 개발 가이드
-- **함수 및 비동기 작업**  
-  모든 함수는 타입 힌트와 Pydantic v2 모델을 이용해 입력 검증 및 응답 스키마를 구성하며, `async def`를 이용해 비동기 처리를 수행합니다.
-- **에러 핸들링**  
-  Guard Clause 및 try/except 구조를 활용하여 사용자 친화적인 에러 메시지를 전달하고, HTTPException으로 예외를 처리합니다.
-- **코드 구조**  
-  - 라우터, 유틸리티, 모델, 의존성 주입 등의 구조로 파일을 분리합니다.  
-  - 서비스 레이어, 레포지토리 패턴 등의 클래스 기반 디자인을 선호합니다.
+### 3. 제품 요구사항 문서 (PRD) 소개
 
-### PRD(Product Requirement Document) 작성 가이드
-- **문서 분리**  
-  프로젝트 PRD는 @PRD_project.md, 디렉토리 구조는 @PRD_project_folder.md, Git 브랜치 전략은 @PRD_git_branch.md 등 각 역할에 맞게 문서를 분리 관리합니다.
-- **상세 설명**  
-  - 프로젝트 개요, 아키텍처, 데이터 모델, API 스펙, 에러 처리, 로깅 등의 요소를 상세히 기술합니다.
-  - 코드 변경 시 관련 PRD 문서, Alembic 마이그레이션 스크립트 및 도메인 문서 간 동기화를 반드시 진행합니다.
-- **협업과 업데이트**  
-  문서 업데이트 및 변경 이력 관리를 통해 변경 사항을 추적하며, 팀원 간의 문서 리뷰를 정기적으로 진행합니다.
+본 프로젝트는 제품 요구사항 문서(PRD)를 통해 프로젝트의 핵심 비즈니스 로직, 기능 요구사항, 데이터 모델, API 설계, 보안 및 테스트 전략 등을 명확히 정의하고 있습니다. 
 
-## 기타 참고 사항
-- **CI/CD 파이프라인**:  
-  정적 분석 도구(black, isort, mypy, ruff, flake8, bandit 등)를 통합하여 코드 리뷰 및 품질 관리를 수행합니다.
-- **환경 변수 관리**:  
-  pydantic-settings를 활용한 환경 변수 및 설정 파일 관리 전략이 마련되어 있으며, 로컬, 스테이징, 프로덕션 별로 설정을 분리합니다.
-- **비동기 및 캐싱 전략**:  
-  Redis 및 fastapi-cache2를 통한 캐싱, asyncpg/SQLAlchemy 2를 통한 비동기 DB 연결, 미들웨어를 활용한 에러 모니터링 및 성능 최적화를 적용합니다.
+각 PRD 문서는 다음과 같이 구성되어 있습니다.
+
+- **전체 프로젝트 요구사항**  
+  - [PRD_project.md](docs/PRD/PRD_project.md)  
+    프로젝트의 개요, 주요 기능, 기술 스택 및 아키텍처 개요가 포함되어 있으며, 전반적인 제품 요구사항을 상세하게 설명합니다.
+
+- **프로젝트 전체 폴더 구조 및 역할**  
+  - [PRD_project_folders.md](docs/PRD/PRD_project_folders.md)  
+    도메인 중심의 폴더 구조, API 라우팅, 비즈니스 로직 및 공통 기능 모듈의 역할과 위치를 명확히 하여, 유지보수성과 확장성을 높이는 설계를 제안합니다.
+
+- **Git 브랜치 및 커밋 메시지 전략**  
+  - [PRD_git_branch.md](docs/PRD/PRD_git_branch.md)  
+    Git 브랜치 전략과 커밋 메시지 작성 규칙을 정의하여, 안정적이고 일관된 형상 관리를 지원합니다.
+
+- **도메인별 제품 요구사항 문서**  
+  - [PRD_order.md](docs/PRD/domain/PRD_order.md)  
+    주문(Order) 도메인의 요구사항과 비즈니스 로직, API 엔드포인트 등을 상세하게 기술합니다.
+  - [PRD_product.md](docs/PRD/domain/PRD_product.md)  
+    상품(Product) 도메인에 대한 등록, 조회, 수정, 삭제 및 관련 비즈니스 로직이 포함됩니다.
+  - [PRD_user.md](docs/PRD/domain/PRD_user.md)  
+    사용자(User) 도메인의 회원가입, 로그인, 프로필 관리 등의 기능과 보안 요구사항을 다룹니다.
+
+> 모든 팀원은 최신 PRD 문서를 참고하여, 코드 변경 시 해당 문서와 동기화를 진행함으로써 일관된 개발 기준과 형상 관리를 유지해야 합니다.
 
 ---
 
-현재 정식 버전이 아니므로 개선해야 할 부분이 많습니다만 차차 개선해 나가도록 하겠습니다.
+아직 개선해야 할 부분이 많습니다만 시간이 허락이 되는데로 계속해서 업데이트 하도록 하겠습니다. 
